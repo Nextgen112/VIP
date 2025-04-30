@@ -1,0 +1,12 @@
+// vercel.json
+{
+  "routes": [
+    {
+      "src": "/VIP.js",
+      "headers": {
+        "Cache-Control": "public, max-age=3600"
+      },
+      "dest": "/VIP.js"
+    }
+  ]
+}
