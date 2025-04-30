@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 // List of allowed IPs (add your own IP addresses)
-const allowedIPs = ['123.123.123.123', '234.234.234.234']; // Replace with your allowed IPs
+const allowedIPs = ['62.201.240.35', '234.234.234.234']; // Replace with your allowed IPs
 
 // Middleware to check IP
 app.use((req, res, next) => {
