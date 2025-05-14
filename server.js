@@ -1,25 +1,49 @@
-// server.js
-const express = require('express');
-const app = express();
+const fs = require('fs');
+const path = require('path');
 
-// List of allowed IPs (add your own IP addresses)
-const allowedIPs = ['62.201.240.35', '234.234.234.234']; // Replace with your allowed IPs
-
-// Middleware to check IP
-app.use((req, res, next) => {
-  const ip = req.ip;
-  if (!allowedIPs.includes(ip)) {
-    return res.status(403).send('Access Denied');
+exports.handler = async (event) => {
+  const { path: requestPath } = event;
+  
+  // Serve static files directly
+  if (requestPath === '/vip.js') {
+    try {
+      const filePath = path.join(process.cwd(), 'public', 'vip.js');
+      const fileContent = fs.readFileSync(filePath, 'utf8');
+      
+      return {
+        statusCode: 200,
+        headers: {
+          'Content-Type': 'application/javascript',
+          'Cache-Control': 'no-cache'
+        },
+        body: fileContent
+      };
+    } catch (err) {
+      return { statusCode: 404, body: 'File not found' };
+    }
   }
-  next();
-});
 
-// Serve VIP.js file
-app.get('/VIP.js', (req, res) => {
-  res.sendFile(__dirname + '/VIP.js');
-});
+  // Serve HTML pages
+  if (requestPath === '/') {
+    const html = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>VIP File Hosting</title>
+    </head>
+    <body>
+      <h1>Welcome to VIP Hosting</h1>
+      <a href="/vip.js" download>Download VIP File</a>
+    </body>
+    </html>
+    `;
+    
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'text/html' },
+      body: html
+    };
+  }
 
-// Start the server
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
-});
+  return { statusCode: 404, body: 'Not found' };
+};
