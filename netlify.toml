@@ -1,16 +1,13 @@
 [build]
   publish = "public"
-  functions = "netlify/functions"  # (optional for future expansion)
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"
-    Pragma = "no-cache"
-    Expires = "0"
-    X-Content-Type-Options = "nosniff"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/vip"
+  to = "/vip.js"
   status = 200
+
+[[headers]]
+  for = "/vip.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+    Content-Type = "application/javascript"
