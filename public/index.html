@@ -3,125 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP File Download</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            color: #333;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .download-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .btn-download {
-            display: inline-block;
-            background: #4CAF50;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 500;
-            margin: 1rem 0;
-            transition: background 0.3s;
-        }
-        .btn-download:hover {
-            background: #45a049;
-        }
-        .file-info {
-            margin: 1.5rem 0;
-            text-align: left;
-            background: white;
-            padding: 1rem;
-            border-radius: 4px;
-        }
-        .share-buttons {
-            margin-top: 2rem;
-        }
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            margin: 0 0.5rem;
-            padding: 8px 12px;
-            background: #f1f1f1;
-            border-radius: 4px;
-            text-decoration: none;
-            color: #333;
-        }
-        .share-btn:hover {
-            background: #e1e1e1;
-        }
-    </style>
+    <title>VIP Game Mod</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="loader.js"></script>
 </head>
 <body>
-    <div class="header">
-        <h1>VIP File Download</h1>
-        <p>Get exclusive access to our premium JavaScript file</p>
-    </div>
-
-    <div class="download-card">
-        <h2>Download VIP.js</h2>
-        <p>This file contains special functionality for authorized users</p>
-        
-        <div class="file-info">
-            <p><strong>File Name:</strong> vip.js</p>
-            <p><strong>File Size:</strong> <span id="file-size">Calculating...</span></p>
-            <p><strong>Downloads:</strong> <span id="download-count">Loading...</span></p>
+    <div class="game-container">
+        <h1>VIP Game Mod</h1>
+        <div class="game-frame" id="game-frame">
+            <!-- Game will load here -->
+            <div class="loader">Loading game mod...</div>
         </div>
-
-        <a href="/download.html" class="btn-download">Download Now</a>
-        
-        <div class="share-buttons">
-            <p>Share this file:</p>
-            <a href="#" class="share-btn" id="share-twitter">Twitter</a>
-            <a href="#" class="share-btn" id="share-telegram">Telegram</a>
-            <a href="#" class="share-btn" id="copy-link">Copy Link</a>
+        <div class="controls">
+            <button id="reload-btn">Reload Mod</button>
+            <div class="version">Mod Version: <span id="mod-version">1.0</span></div>
         </div>
     </div>
-
-    <script>
-        // Get file size
-        fetch('/vip.js')
-            .then(response => {
-                const size = response.headers.get('content-length');
-                document.getElementById('file-size').textContent = 
-                    `${Math.round(size/1024)} KB`;
-            });
-
-        // Get download count
-        fetch('/.netlify/functions/track?action=get')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('download-count').textContent = data.count;
-            });
-
-        // Share buttons functionality
-        document.getElementById('copy-link').addEventListener('click', (e) => {
-            e.preventDefault();
-            navigator.clipboard.writeText(window.location.href);
-            alert('Link copied to clipboard!');
-        });
-
-        document.getElementById('share-twitter').addEventListener('click', (e) => {
-            e.preventDefault();
-            window.open(`https://twitter.com/intent/tweet?text=Check%20out%20this%20VIP%20file%20${encodeURIComponent(window.location.href)}`);
-        });
-
-        document.getElementById('share-telegram').addEventListener('click', (e) => {
-            e.preventDefault();
-            window.open(`https://t.me/share/url?url=${encodeURIComponent(window.location.href)}`);
-        });
-    </script>
+    
+    <!-- Hidden iframe for smooth reloads -->
+    <iframe id="game-iframe" style="display:none" src="vip.js"></iframe>
 </body>
 </html>
