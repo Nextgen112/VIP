@@ -5,8 +5,8 @@
   force = true
   conditions = {Role = "admin"}
 
-[[headers]]
-  for = "/vip.js"
-  [headers.values]
-    Content-Type = "application/javascript"
-    Cache-Control = "no-cache"
+[[redirects]]
+  from = "/vip.js"
+  to = "/vip.js"
+  status = 200
+  conditions = {Role = "admin"}
