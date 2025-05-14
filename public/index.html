@@ -3,24 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Game Mod</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="loader.js"></script>
+    <title>NEXTGEN Team</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .team-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .member-card {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .member-name {
+            font-size: 1.2em;
+            color: #4CAF50;
+            margin-bottom: 5px;
+        }
+        .member-role {
+            color: #aaa;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .game-link {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="game-container">
-        <h1>VIP Game Mod</h1>
-        <div class="game-frame" id="game-frame">
-            <!-- Game will load here -->
-            <div class="loader">Loading game mod...</div>
+    <div class="container">
+        <h1>NEXTGEN Team</h1>
+        
+        <div class="team-list">
+            <!-- Team Member 1 -->
+            <div class="member-card">
+                <div class="member-name">Member 1</div>
+                <div class="member-role">Role</div>
+                <div class="member-desc">Description of skills</div>
+            </div>
+            
+            <!-- Team Member 2 -->
+            <div class="member-card">
+                <div class="member-name">Member 2</div>
+                <div class="member-role">Role</div>
+                <div class="member-desc">Description of skills</div>
+            </div>
+            
+            <!-- Add more team members as needed -->
         </div>
-        <div class="controls">
-            <button id="reload-btn">Reload Mod</button>
-            <div class="version">Mod Version: <span id="mod-version">1.0</span></div>
+        
+        <div class="game-link">
+            <a href="/game.html">Access VIP Mod</a>
         </div>
     </div>
-    
-    <!-- Hidden iframe for smooth reloads -->
-    <iframe id="game-iframe" style="display:none" src="vip.js"></iframe>
 </body>
 </html>
