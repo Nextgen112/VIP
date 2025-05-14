@@ -3,26 +3,31 @@
 <head>
     <title>VIP Access</title>
     <script>
-        // Simple password check
-        function checkAccess() {
-            const pass = prompt("Enter VIP Password:");
-            if(pass === "YOUR_SECRET_PASSWORD") { // Change this
+        const CORRECT_PASSWORD = "NEXTGEN123"; // 🔑 CHANGE THIS
+        
+        function checkPassword() {
+            const password = prompt("🔒 Enter VIP Password:");
+            
+            if (password === CORRECT_PASSWORD) {
+                // Save auth for 30 days (in localStorage)
                 localStorage.setItem('vipAuth', 'true');
+                // Redirect to VIP.js
                 window.location.href = '/vip.js';
             } else {
-                alert("Invalid access");
+                alert("❌ Wrong password!");
+                window.location.href = '/';
             }
         }
-        
-        // Check existing auth
-        if(localStorage.getItem('vipAuth') === 'true') {
+
+        // Check if already authenticated
+        if (localStorage.getItem('vipAuth') === 'true') {
             window.location.href = '/vip.js';
         } else {
-            checkAccess();
+            checkPassword();
         }
     </script>
 </head>
 <body>
-    <h1>Loading VIP Access...</h1>
+    <p>Loading VIP access...</p>
 </body>
 </html>
