@@ -3,81 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXTGEN Team</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #121212;
-            color: #fff;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        h1 {
-            color: #4CAF50;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .team-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .member-card {
-            background: #1e1e1e;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .member-name {
-            font-size: 1.2em;
-            color: #4CAF50;
-            margin-bottom: 5px;
-        }
-        .member-role {
-            color: #aaa;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-        .game-link {
-            display: block;
-            text-align: center;
-            margin-top: 40px;
-        }
-        a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-    </style>
+    <title>NEXTGEN - Login</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>NEXTGEN Team</h1>
-        
-        <div class="team-list">
-            <!-- Team Member 1 -->
-            <div class="member-card">
-                <div class="member-name">Member 1</div>
-                <div class="member-role">Role</div>
-                <div class="member-desc">Description of skills</div>
-            </div>
-            
-            <!-- Team Member 2 -->
-            <div class="member-card">
-                <div class="member-name">Member 2</div>
-                <div class="member-role">Role</div>
-                <div class="member-desc">Description of skills</div>
-            </div>
-            
-            <!-- Add more team members as needed -->
-        </div>
-        
-        <div class="game-link">
-            <a href="/game.html">Access VIP Mod</a>
+    <div class="login-container">
+        <h1>NEXTGEN Team Portal</h1>
+        <div class="login-form">
+            <div class="error-message" id="error"></div>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button onclick="login()">Login</button>
+            <div class="info">Limited to 10 authorized members</div>
         </div>
     </div>
+    <script src="/js/auth.js"></script>
 </body>
 </html>
