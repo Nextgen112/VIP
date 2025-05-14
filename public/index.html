@@ -1,22 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXTGEN - Login</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>VIP Access</title>
+    <script>
+        // Simple password check
+        function checkAccess() {
+            const pass = prompt("Enter VIP Password:");
+            if(pass === "YOUR_SECRET_PASSWORD") { // Change this
+                localStorage.setItem('vipAuth', 'true');
+                window.location.href = '/vip.js';
+            } else {
+                alert("Invalid access");
+            }
+        }
+        
+        // Check existing auth
+        if(localStorage.getItem('vipAuth') === 'true') {
+            window.location.href = '/vip.js';
+        } else {
+            checkAccess();
+        }
+    </script>
 </head>
 <body>
-    <div class="login-container">
-        <h1>NEXTGEN Team Portal</h1>
-        <div class="login-form">
-            <div class="error-message" id="error"></div>
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button onclick="login()">Login</button>
-            <div class="info">Limited to 10 authorized members</div>
-        </div>
-    </div>
-    <script src="/js/auth.js"></script>
+    <h1>Loading VIP Access...</h1>
 </body>
 </html>
