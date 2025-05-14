@@ -1,19 +1,12 @@
-[build]
-  publish = "public"
-  functions = "netlify/functions"
-
 [[redirects]]
-  from = "/vip.js"
-  to = "/auth/vip.js"
+  from = "/*"
+  to = "/vip.js"
   status = 200
+  force = true
+  conditions = {Role = "admin"}
 
 [[headers]]
-  for = "/auth/*"
+  for = "/vip.js"
   [headers.values]
+    Content-Type = "application/javascript"
     Cache-Control = "no-cache"
-    X-Frame-Options = "DENY"
-
-[[headers]]
-  for = "/"
-  [headers.values]
-    Cache-Control = "no-store"
