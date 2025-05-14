@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIP Download</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+    .download-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #0066ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>VIP File Download</h1>
+  <p>Click below to download the special file:</p>
+  <a href="/vip.js" class="download-btn" download>Download VIP.js</a>
+  
+  <h2>Advanced Options</h2>
+  <div id="download-status"></div>
+  
+  <script>
+    // Optional: Add download tracking
+    document.querySelector('.download-btn').addEventListener('click', () => {
+      fetch('/.netlify/functions/track-download')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('download-status').innerHTML = 
+            `<p>Download count: ${data.count}</p>`;
+        });
+    });
+  </script>
+</body>
+</html>
