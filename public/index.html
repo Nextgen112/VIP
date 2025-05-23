@@ -2,15 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Netlify Site</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VIP Access</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+    #login-form input {
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      border-radius: 6px;
+    }
+    #login-form button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      background-color: #1db954;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #content {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to My Netlify Site!</h1>
-  <p>This is a simple static website deployed on Netlify.</p>
 
-  <button id="btn">Click me</button>
+  <!-- Login Form -->
+  <div id="login-form">
+    <h2>Enter VIP Access</h2>
+    <input id="username" placeholder="Username"><br>
+    <input id="password" type="password" placeholder="Password"><br>
+    <button onclick="login()">Login</button>
+    <p id="message"></p>
+  </div>
+
+  <!-- Protected Content -->
+  <div id="content">
+    <h1>🎉 Welcome to the VIP Area 🎉</h1>
+    <p>You now have access for 30 days on this device.</p>
+    <a href="VIP.js" target="_blank" style="color: #1db954;">Download VIP.js</a>
+  </div>
+
   <script src="app.js"></script>
 </body>
 </html>
