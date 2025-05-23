@@ -1,45 +1,52 @@
 const users = [
-  { username: "admin", password: "vip123" },
-  { username: "user1", password: "abc123" }
+  { username: "admin", password: "vip123" }
 ];
 
 function login() {
-  const user = document.getElementById("username").value.trim();
-  const pass = document.getElementById("password").value.trim();
-  const message = document.getElementById("message");
-
-  const match = users.find(u => u.username === user && u.password === pass);
-  if (match) {
+  const u = document.getElementById("username").value;
+  const p = document.getElementById("password").value;
+  const found = users.find(x => x.username === u && x.password === p);
+  if (found) {
     const expire = new Date();
     expire.setDate(expire.getDate() + 30);
-    localStorage.setItem("vip_access_expires", expire.getTime());
-    showContent();
+    localStorage.setItem("vip_ok", expire.getTime());
+    showVIP();
   } else {
-    message.textContent = "❌ Invalid login.";
+    document.getElementById("message").textContent = "❌ Wrong credentials.";
   }
 }
 
-function showContent() {
+function showVIP() {
   document.getElementById("login-form").style.display = "none";
   document.getElementById("content").style.display = "block";
-  loadVIP();
+  injectVIP();
 }
 
-function loadVIP() {
+function injectVIP() {
+  const vipCode = `
+    (function(){
+      console.log("🔥 VIP logic running");
+      alert("✅ Access granted!");
+      // Your secure VIP logic here
+      const secret = "DTC_SECRET_CODE_999";
+      console.log("Running hidden logic with code:", secret);
+    })();
+  `;
   const script = document.createElement("script");
-  script.textContent = `
-    console.log("🔥 VIP script running");
-    alert("✅ VIP features unlocked");
-    // Add your VIP-only code here
+  script.textContent = btoa(vipCode); // base64 encode
+  const decode = document.createElement("script");
+  decode.textContent = `
+    eval(atob(document.scripts[document.scripts.length-1].textContent));
   `;
   document.body.appendChild(script);
+  document.body.appendChild(decode);
 }
 
 function checkAccess() {
-  const expireTime = localStorage.getItem("vip_access_expires");
-  if (expireTime && new Date().getTime() < parseInt(expireTime)) {
-    showContent();
+  const t = localStorage.getItem("vip_ok");
+  if (t && parseInt(t) > Date.now()) {
+    showVIP();
   }
 }
 
-window.onload = checkAccess;
+checkAccess();
