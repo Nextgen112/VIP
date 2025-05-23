@@ -7,24 +7,21 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #121212;
-      color: white;
-      padding: 40px;
+      background: #111;
+      color: #eee;
       text-align: center;
+      padding: 50px;
     }
-    #login-form input {
-      padding: 10px;
+    input, button {
       margin: 10px;
-      border: none;
-      border-radius: 6px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
     }
-    #login-form button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      background-color: #1db954;
+    button {
+      background: #28a745;
       color: white;
-      font-weight: bold;
+      border: none;
       cursor: pointer;
     }
     #content {
@@ -33,21 +30,18 @@
   </style>
 </head>
 <body>
-
-  <!-- Login Form -->
   <div id="login-form">
-    <h2>Enter VIP Access</h2>
+    <h2>🔒 VIP Login</h2>
     <input id="username" placeholder="Username"><br>
     <input id="password" type="password" placeholder="Password"><br>
     <button onclick="login()">Login</button>
-    <p id="message"></p>
+    <p id="message" style="color: red;"></p>
   </div>
 
-  <!-- Protected Content -->
   <div id="content">
-    <h1>🎉 Welcome to the VIP Area 🎉</h1>
-    <p>You now have access for 30 days on this device.</p>
-    <a href="VIP.js" target="_blank" style="color: #1db954;">Download VIP.js</a>
+    <h1>🎉 Welcome to VIP 🎉</h1>
+    <p>You are now logged in. Enjoy your 30-day access!</p>
+    <a href="VIP.js" target="_blank" style="color: #28a745;">➡️ Download VIP.js</a>
   </div>
 
   <script src="app.js"></script>
