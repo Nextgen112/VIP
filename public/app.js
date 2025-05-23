@@ -1,52 +1,57 @@
+// Hardcoded user list
 const users = [
-  { username: "admin", password: "vip123" }
+  { username: "admin", password: "vip123" },
+  { username: "user1", password: "pass1" }
 ];
 
+// Login function
 function login() {
-  const u = document.getElementById("username").value;
-  const p = document.getElementById("password").value;
-  const found = users.find(x => x.username === u && x.password === p);
+  const u = document.getElementById("username").value.trim();
+  const p = document.getElementById("password").value.trim();
+  const found = users.find(user => user.username === u && user.password === p);
+  const message = document.getElementById("message");
   if (found) {
-    const expire = new Date();
-    expire.setDate(expire.getDate() + 30);
-    localStorage.setItem("vip_ok", expire.getTime());
+    // Save token valid for 30 days
+    const expireDate = new Date();
+    expireDate.setDate(expireDate.getDate() + 30);
+    localStorage.setItem("vip_access_expire", expireDate.getTime());
     showVIP();
+    message.textContent = "";
   } else {
-    document.getElementById("message").textContent = "❌ Wrong credentials.";
+    message.textContent = "❌ Invalid username or password.";
   }
 }
 
+// Show VIP content and inject VIP code
 function showVIP() {
   document.getElementById("login-form").style.display = "none";
-  document.getElementById("content").style.display = "block";
+  const vipContent = document.getElementById("vip-content");
+  vipContent.style.display = "block";
   injectVIP();
 }
 
+// Inject VIP logic dynamically (instead of separate VIP.js)
 function injectVIP() {
-  const vipCode = `
-    (function(){
-      console.log("🔥 VIP logic running");
-      alert("✅ Access granted!");
-      // Your secure VIP logic here
-      const secret = "DTC_SECRET_CODE_999";
-      console.log("Running hidden logic with code:", secret);
+  const vipScript = document.createElement("script");
+  vipScript.textContent = `
+    (function() {
+      console.log("🔥 VIP features activated!");
+      alert("Welcome VIP user! Access granted.");
+      // Your VIP secret code here
+      // For example:
+      // alert("Here is your secret VIP code: DTC-VIP-1234");
     })();
   `;
-  const script = document.createElement("script");
-  script.textContent = btoa(vipCode); // base64 encode
-  const decode = document.createElement("script");
-  decode.textContent = `
-    eval(atob(document.scripts[document.scripts.length-1].textContent));
-  `;
-  document.body.appendChild(script);
-  document.body.appendChild(decode);
+  document.body.appendChild(vipScript);
 }
 
+// Check if user has valid token on page load
 function checkAccess() {
-  const t = localStorage.getItem("vip_ok");
-  if (t && parseInt(t) > Date.now()) {
+  const expire = localStorage.getItem("vip_access_expire");
+  if (expire && parseInt(expire) > Date.now()) {
     showVIP();
   }
 }
 
+// Run on page load
 checkAccess();
