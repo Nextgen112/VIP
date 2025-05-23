@@ -1,46 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>VIP Access</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #1b1b1b;
-      color: #eee;
-      text-align: center;
-      padding: 50px;
-    }
-    input, button {
-      margin: 10px;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-    }
-    button {
-      background: #28a745;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    #content {
-      display: none;
-    }
+    body { background: #111; color: white; font-family: sans-serif; text-align: center; padding: 50px; }
+    input, button { margin: 10px; padding: 10px; font-size: 16px; border-radius: 5px; }
+    button { background: #28a745; color: white; border: none; cursor: pointer; }
+    #content { display: none; }
   </style>
 </head>
 <body>
   <div id="login-form">
-    <h2>🔐 VIP Login</h2>
+    <h2>VIP Login</h2>
     <input id="username" placeholder="Username"><br>
     <input id="password" type="password" placeholder="Password"><br>
     <button onclick="login()">Login</button>
-    <p id="message" style="color: red;"></p>
+    <p id="message" style="color:red;"></p>
   </div>
 
   <div id="content">
-    <h1>🎉 Welcome to VIP Zone 🎉</h1>
-    <p>You are logged in. Enjoy your 30-day access!</p>
+    <h1>🎉 VIP Unlocked</h1>
+    <p>You now have access. Enjoy!</p>
   </div>
 
   <script src="app.js"></script>
