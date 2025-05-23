@@ -1,6 +1,5 @@
 const users = [
   { username: "admin", password: "vip123" },
-  { username: "guest", password: "test123" },
   { username: "user1", password: "abc123" }
 ];
 
@@ -16,13 +15,24 @@ function login() {
     localStorage.setItem("vip_access_expires", expire.getTime());
     showContent();
   } else {
-    message.textContent = "❌ Invalid username or password.";
+    message.textContent = "❌ Invalid login.";
   }
 }
 
 function showContent() {
   document.getElementById("login-form").style.display = "none";
   document.getElementById("content").style.display = "block";
+  loadVIP();
+}
+
+function loadVIP() {
+  const script = document.createElement("script");
+  script.textContent = `
+    console.log("🔥 VIP script running");
+    alert("✅ VIP features unlocked");
+    // Add your VIP-only code here
+  `;
+  document.body.appendChild(script);
 }
 
 function checkAccess() {
