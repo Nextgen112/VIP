@@ -1,16 +1,19 @@
-const validUsername = "admin";
-const validPassword = "vip123";
+const users = [
+  { username: "admin", password: "vip123" },
+  { username: "guest", password: "test123" },
+  { username: "user1", password: "abc123" }
+];
 
 function login() {
-  const user = document.getElementById('username').value;
-  const pass = document.getElementById('password').value;
-  const message = document.getElementById('message');
+  const user = document.getElementById("username").value.trim();
+  const pass = document.getElementById("password").value.trim();
+  const message = document.getElementById("message");
 
-  if (user === validUsername && pass === validPassword) {
-    const expireDate = new Date();
-    expireDate.setDate(expireDate.getDate() + 30);
-    localStorage.setItem('loginExpire', expireDate.getTime());
-
+  const match = users.find(u => u.username === user && u.password === pass);
+  if (match) {
+    const expire = new Date();
+    expire.setDate(expire.getDate() + 30);
+    localStorage.setItem("vip_access_expires", expire.getTime());
     showContent();
   } else {
     message.textContent = "❌ Invalid username or password.";
@@ -18,15 +21,15 @@ function login() {
 }
 
 function showContent() {
-  document.getElementById('login-form').style.display = 'none';
-  document.getElementById('content').style.display = 'block';
+  document.getElementById("login-form").style.display = "none";
+  document.getElementById("content").style.display = "block";
 }
 
-function checkLogin() {
-  const expire = localStorage.getItem('loginExpire');
-  if (expire && new Date().getTime() < parseInt(expire)) {
+function checkAccess() {
+  const expireTime = localStorage.getItem("vip_access_expires");
+  if (expireTime && new Date().getTime() < parseInt(expireTime)) {
     showContent();
   }
 }
 
-window.onload = checkLogin;
+window.onload = checkAccess;
